@@ -3,7 +3,9 @@ package tn.agena3000.cloud.kaddemproject.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.agena3000.cloud.kaddemproject.entities.Contrat;
+import tn.agena3000.cloud.kaddemproject.entities.Etudiant;
 import tn.agena3000.cloud.kaddemproject.repositories.ContratRespository;
+import tn.agena3000.cloud.kaddemproject.repositories.EtudiantRepository;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class IContratServiceImp implements IContratServices {
 private  ContratRespository contratRep;
+private EtudiantRepository etudiantRepository;
     @Override
     public void ajouterContrat(Contrat c) {
 
@@ -38,5 +41,19 @@ private  ContratRespository contratRep;
     @Override
     public void deleteContrat(Integer idContrat) {
 contratRep.deleteById(idContrat);
+    }
+
+    @Override
+    public Contrat affectContratToEtudiant(Contrat ce, String nomE, String prenomE) {
+        Etudiant e = etudiantRepository.findByNomEAndPrenomE(nomE,prenomE);
+        int nbr = e.getContrats().size();
+        if(nbr<5){
+        ce.setEtudiant(e);
+        contratRep.save(ce);
+        return ce;
+        }else {
+            return null;
+        }
+
     }
 }

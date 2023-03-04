@@ -14,7 +14,7 @@ public class Equipe {
 
     @Enumerated(EnumType.STRING)
     private Niveau niveau;
-@ManyToMany
+@ManyToMany(mappedBy = "equipes")
     private List<Etudiant> etudiants = new ArrayList<>();
 @OneToOne
     private DetailEquipe details;

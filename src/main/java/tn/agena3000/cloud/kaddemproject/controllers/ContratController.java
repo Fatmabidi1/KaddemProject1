@@ -36,4 +36,11 @@ public class ContratController {
         return contrat;
     }
 
+    @PostMapping("/{ce}/{nomE}/{prenomE}")
+    public Contrat affectContratToEtudiant(@PathVariable Contrat ce, @PathVariable String nomE, @PathVariable String prenomE){
+        iContratServices.affectContratToEtudiant(ce,nomE,prenomE);
+        return ce;
+    }
+
+
 }

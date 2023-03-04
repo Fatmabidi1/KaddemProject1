@@ -1,5 +1,8 @@
 package tn.agena3000.cloud.kaddemproject.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -8,6 +11,8 @@ import java.util.List;
 
 @Table ( name = "contrat")
 @Entity
+@Getter
+@Setter
 public class Contrat {
 
     @Id
