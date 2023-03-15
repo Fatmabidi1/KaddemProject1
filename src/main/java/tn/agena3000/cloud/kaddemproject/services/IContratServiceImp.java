@@ -12,8 +12,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class IContratServiceImp implements IContratServices {
-private  ContratRespository contratRep;
-private EtudiantRepository etudiantRepository;
+    private ContratRespository contratRep;
+    private EtudiantRepository etudiantRepository;
+
     @Override
     public void ajouterContrat(Contrat c) {
 
@@ -40,20 +41,23 @@ private EtudiantRepository etudiantRepository;
 
     @Override
     public void deleteContrat(Integer idContrat) {
-contratRep.deleteById(idContrat);
+        contratRep.deleteById(idContrat);
     }
 
     @Override
     public Contrat affectContratToEtudiant(Contrat ce, String nomE, String prenomE) {
-        Etudiant e = etudiantRepository.findByNomEAndPrenomE(nomE,prenomE);
-        int nbr = e.getContrats().size();
-        if(nbr<5){
-        ce.setEtudiant(e);
-        contratRep.save(ce);
-        return ce;
-        }else {
+        Etudiant e = etudiantRepository.findByNomEAndPrenomE(nomE, prenomE);
+
+        int nbr = contratRep.countByArchiveIsFalseAndEtudiantNomEAndPrenomE(nomE,prenomE);
+        if (nbr <= 5) {
+            ce.setEtudiant(e);
+            contratRep.save(ce);
+            return ce;
+        } else {
             return null;
         }
 
     }
 }
+
+

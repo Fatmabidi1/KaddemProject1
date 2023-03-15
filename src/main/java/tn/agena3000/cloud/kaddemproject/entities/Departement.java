@@ -17,10 +17,8 @@ public class Departement {
     private int idDepart;
     private String nomDepart;
     @OneToMany(mappedBy = "departement")
-    private List<Etudiant> etudiants = new ArrayList<>();
+    private List<Etudiant> etudiants;
 
-    @ManyToOne
-    private Universite universite;
 
 
 }

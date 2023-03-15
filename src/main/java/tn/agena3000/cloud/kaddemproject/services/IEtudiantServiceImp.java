@@ -11,6 +11,7 @@ import tn.agena3000.cloud.kaddemproject.repositories.DepartementRepository;
 import tn.agena3000.cloud.kaddemproject.repositories.EquipeRepository;
 import tn.agena3000.cloud.kaddemproject.repositories.EtudiantRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -64,13 +65,14 @@ public class IEtudiantServiceImp implements IEtudiantServices {
     }
 
     @Override
+    @Transactional
     public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe) {
         Contrat contrat = contratRespository.findById(idContrat).orElse(null);
         Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
+       etudiantReposiory.saveAndFlush(e);
         e.getEquipes().add(equipe);
         contrat.setEtudiant(e);
-        contratRespository.save(contrat);
-        return etudiantReposiory.save(e);
+        return e;
 
 
     }

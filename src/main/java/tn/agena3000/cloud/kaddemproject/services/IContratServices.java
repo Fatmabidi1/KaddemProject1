@@ -12,4 +12,5 @@ public interface IContratServices {
     void deleteContrat(Integer idContrat);
 
     Contrat affectContratToEtudiant (Contrat ce, String nomE,String prenomE);
+
 }

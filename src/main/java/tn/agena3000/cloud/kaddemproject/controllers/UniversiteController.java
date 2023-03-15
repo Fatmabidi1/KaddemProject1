@@ -2,6 +2,7 @@ package tn.agena3000.cloud.kaddemproject.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.agena3000.cloud.kaddemproject.entities.Departement;
 import tn.agena3000.cloud.kaddemproject.entities.Universite;
 import tn.agena3000.cloud.kaddemproject.services.IUniversiteService;
 
@@ -33,5 +34,9 @@ public class UniversiteController {
     public Universite updateUniversite(@RequestBody Universite universite){
         iUniversiteServices.updateUniversite(universite);
         return universite;
+    }
+    @GetMapping("{idUniversite}")
+    public List<Departement> retrieveDepartementsByUniversite(Integer idUniversite){
+        return iUniversiteServices.retrieveDepartementsByUniversite(idUniversite);
     }
 }

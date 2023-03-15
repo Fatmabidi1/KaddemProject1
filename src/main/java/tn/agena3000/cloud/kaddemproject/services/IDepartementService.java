@@ -1,6 +1,7 @@
 package tn.agena3000.cloud.kaddemproject.services;
 
 import tn.agena3000.cloud.kaddemproject.entities.Departement;
+import tn.agena3000.cloud.kaddemproject.entities.Etudiant;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface IDepartementService {
 
     void assignUniversiteToDepartement(Integer idUniversite, Integer
             idDepartement);
+    List<Etudiant> getEtudiantsByDepartement (Integer idDepartement);
 }

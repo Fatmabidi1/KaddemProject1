@@ -3,6 +3,7 @@ package tn.agena3000.cloud.kaddemproject.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.agena3000.cloud.kaddemproject.entities.Departement;
+import tn.agena3000.cloud.kaddemproject.entities.Etudiant;
 import tn.agena3000.cloud.kaddemproject.services.IDepartementService;
 
 import java.util.List;
@@ -39,5 +40,9 @@ public class DepartementController {
     public void assignUniversiteToDepartement(@PathVariable Integer idUniversite, @PathVariable Integer
             idDepartement){
   iDepartementServices.assignUniversiteToDepartement(idUniversite,idDepartement);
-    };
+    }
+    @GetMapping("idDepartement}")
+    public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
+        return iDepartementServices.getEtudiantsByDepartement(idDepartement);
+    }
 }
